@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "war-sim-backend"
+version = "1.0.0"
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115"
+uvicorn = {extras = ["standard"], version = "^0.32"}
+asyncpg = "^0.30"
+redis = "^5.0"
+pyjwt = "^2.8"
+passlib = {extras = ["bcrypt"], version = "^1.7"}
+pydantic = "^2.5"
+pydantic-settings = "^2.1"

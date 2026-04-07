@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports: ["5432:5432"]
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./db/postgres/01_schema.sql:/docker-entrypoint-initdb.d/01.sql
+      - ./db/postgres/02_seed.sql:/docker-entrypoint-initdb.d/02.sql
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+  backend:
+    build: ./backend
+    ports: ["8000:8000"]
+    depends_on: [postgres, redis]
+    environment:
+      DB_HOST: postgres
+      DB_USER: ${POSTGRES_USER}
+      DB_PASS: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
+      REDIS_URL: ${REDIS_URL}
+      JWT_SECRET: ${JWT_SECRET}
+    volumes:
+      - ./backend/app:/app/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+  frontend:
+    build: ./frontend
+    ports: ["3000:3000"]
+    depends_on: [backend]
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+      NEXT_PUBLIC_WS_URL: ws://localhost:8000
+      NEXT_PUBLIC_MAPBOX_TOKEN: ${MAPBOX_TOKEN}
+    volumes:
+      - ./frontend/src:/app/src
+volumes:
+  pg_data:
