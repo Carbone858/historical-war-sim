@@ -1,0 +1,24 @@
+﻿{
+  "id": "gettysburg-1863",
+  "name": "Battle of Gettysburg",
+  "year": 1863,
+  "duration_hours": 72,
+  "era": "american_civil_war",
+  "terrain_type": "hilly_open_field",
+  "map_bounds": {
+    "north": 39.84,
+    "south": 39.80,
+    "east": -77.20,
+    "west": -77.25
+  },
+  "simulation_config": {
+    "tick_duration_seconds": 3600,
+    "movement_model": "linear_terrain_cost",
+    "combat_model": "lanchester_modified",
+    "morale_decay_rate": 0.02,
+    "supply_consumption_rate": 0.005
+  },
+  "factions": ["Union", "Confederate"],
+  "sources": ["NPS", "Coddington 1968"],
+  "verified": true
+}
