@@ -7,17 +7,24 @@
     "build": "next build"
   },
   "dependencies": {
-    "@types/leaflet": "1.9",
-    "leaflet": "^1.9.4",
+    "@deck.gl/core": "^9.2.11",
+    "@deck.gl/geo-layers": "^9.2.11",
+    "@deck.gl/layers": "^9.2.11",
+    "@deck.gl/mesh-layers": "^9.2.11",
+    "@deck.gl/react": "^9.2.11",
+    "@types/mapbox-gl": "^3.4.1",
+    "deck.gl": "^9.2.11",
+    "howler": "^2.2.4",
     "mapbox-gl": "^3.4",
+    "maplibre-gl": "^3.6.2",
     "next": "^14.2",
     "react": "^18",
     "react-dom": "^18",
-    "react-leaflet": "^4.2.1",
-    "react-map-gl": "^7.1",
+    "react-map-gl": "^7.1.9",
     "zustand": "^4.5.7"
   },
   "devDependencies": {
+    "@types/howler": "^2.2.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "autoprefixer": "^10.4.27",
